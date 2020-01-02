@@ -7,7 +7,6 @@ require 'directors_database'
 def flatten_a_o_a(aoa)
   result = []
   i = 0
-
   while i < aoa.length do
     k = 0
     while k < aoa[i].length do
@@ -74,6 +73,21 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  result = {}
+i = 0
+
+while i < collection.length do
+  movie = collection[i]
+
+  if !result[movie[:studio]]
+    result[movie[:studio]] = movie[:worldwide_gross]
+  else
+    result[movie[:studio]] += movie[:worldwide_gross]
+  end
+  i += 1
+end
+
+result
 end
 
 def movies_with_directors_set(source)
